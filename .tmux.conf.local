@@ -4,7 +4,6 @@
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
-
 # -- navigation ----------------------------------------------------------------
 
 # if you're running tmux within iTerm2
@@ -20,7 +19,7 @@
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -35,7 +34,7 @@ tmux_conf_new_pane_reconnect_ssh=false
 # prompt for session name when creating a new session, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_session_prompt=false
+tmux_conf_new_session_prompt=true
 
 
 # -- display -------------------------------------------------------------------
@@ -43,7 +42,7 @@ tmux_conf_new_session_prompt=false
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
 #  - false (default)
-tmux_conf_24b_colour=false
+tmux_conf_24b_colour=true
 
 # default theme
 tmux_conf_theme_colour_1="#080808"    # dark gray
@@ -90,7 +89,7 @@ tmux_conf_theme_window_bg="default"
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
 #   - false (default)
-tmux_conf_theme_highlight_focused_pane=false
+tmux_conf_theme_highlight_focused_pane=true
 
 # focused pane colours:
 tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
@@ -190,14 +189,14 @@ tmux_conf_theme_window_status_last_bg="$tmux_conf_theme_colour_2"
 tmux_conf_theme_window_status_last_attr="none"
 
 # status left/right sections separators
-tmux_conf_theme_left_separator_main=""
-tmux_conf_theme_left_separator_sub="|"
-tmux_conf_theme_right_separator_main=""
-tmux_conf_theme_right_separator_sub="|"
-#tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
-#tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
-#tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
-#tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+#tmux_conf_theme_left_separator_main=""
+#tmux_conf_theme_left_separator_sub="|"
+#tmux_conf_theme_right_separator_main=""
+#tmux_conf_theme_right_separator_sub="|"
+tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
 
 # status left/right content:
 #   - separate main sections with "|"
@@ -320,17 +319,17 @@ tmux_conf_theme_clock_style="24"
 #   - false (default)
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -347,6 +346,7 @@ tmux_conf_copy_to_os_clipboard=false
 # move status line to top
 #set -g status-position top
 
+set -sg repeat-time 250                   # decrease repeat timeout
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -360,7 +360,7 @@ tmux_conf_copy_to_os_clipboard=false
 # by default, launching tmux will update tpm and all plugins
 #   - true (default)
 #   - false
-tmux_conf_update_plugins_on_launch=true
+tmux_conf_update_plugins_on_launch=false
 
 # by default, reloading the configuration will update tpm and all plugins
 #   - true (default)
@@ -388,6 +388,9 @@ tmux_conf_uninstall_plugins_on_reload=true
 #set -g @plugin 'tmux-plugins/tmux-resurrect'
 #set -g @plugin 'tmux-plugins/tmux-continuum'
 #set -g @continuum-restore 'on'
+#set -g @resurrect-strategy-nvim 'session'
+set -g @plugin 'tmux-plugins/tmux-sessionist'
+set -g @plugin 'tmux-plugins/tmux-sidebar'
 
 
 # -- custom variables ----------------------------------------------------------
