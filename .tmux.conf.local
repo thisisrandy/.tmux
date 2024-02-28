@@ -361,6 +361,11 @@ unbind C-a
 
 set -sg repeat-time 250                   # decrease repeat timeout
 
+# increase the amount of time pane numbers are displayed after C-b q
+# display-panes-time 3000
+# alternatively, display pane IDs until a pane is selected
+bind -T prefix q display-panes -d 0
+
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
